@@ -4,6 +4,9 @@ class Movie < ActiveRecord::Base
   # implement this method. Remeber to exclude [self]
   # (the current movie) from your return value
   def others_by_same_director
-    # Your code here #
+    if director.nil?
+      return nil
+    end
+    Movie.where(director: director).where.not(id: id)
   end
 end
